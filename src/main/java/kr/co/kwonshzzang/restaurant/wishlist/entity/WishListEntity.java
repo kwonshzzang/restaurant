@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Builder
 public class WishListEntity extends MemoryDbEntity {
     private String title;               //음식명, 장소명

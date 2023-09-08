@@ -29,7 +29,7 @@ public class NaverClient {
     private String naverImageSearchUrl;
 
     public SearchLocalRes searchLocal(SearchLocalReq searchLocalReq) {
-        var uri = UriComponentsBuilder
+                var uri = UriComponentsBuilder
                 .fromUriString(naverImageSearchUrl)
                 .queryParams(searchLocalReq.toMultiValueMap())
                 .build()

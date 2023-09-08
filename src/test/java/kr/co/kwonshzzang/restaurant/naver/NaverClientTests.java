@@ -28,7 +28,7 @@ class NaverClientTests {
     @Test
     void searchImageTest() {
         var search = new SearchImageReq();
-        search.setQuery("갈비집");
+        search.setQuery("클리앙");
 
         var result = naverClient.searchImage(search);
 

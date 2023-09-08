@@ -1,16 +1,14 @@
 package kr.co.kwonshzzang.restaurant.wishlist.entity;
 
 import kr.co.kwonshzzang.restaurant.db.MemoryDbEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class WishListEntity extends MemoryDbEntity {
     private String title;               //음식명, 장소명

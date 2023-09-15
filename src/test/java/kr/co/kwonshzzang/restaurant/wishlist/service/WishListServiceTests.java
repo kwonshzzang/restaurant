@@ -13,8 +13,8 @@ class WishListServiceTests {
 
     @Test
     public void searchTest() {
-        var result =  wishListService.search("중국집");
+        var result =  wishListService.search("장수갈비");
         System.out.println(result);
+        assertNotNull(result);
     }
-
 }

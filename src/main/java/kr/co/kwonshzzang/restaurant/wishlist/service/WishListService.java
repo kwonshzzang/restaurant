@@ -13,36 +13,32 @@ public class WishListService {
     private final NaverClient naverClient;
 
     public WishListDto search(String query) {
-        //지역검색
+
+        //1. 지역검색
         var searchLocalReq = new SearchLocalReq();
         searchLocalReq.setQuery(query);
 
         var searchLocalRes = naverClient.searchLocal(searchLocalReq);
-        if(searchLocalRes.getTotal() > 0) {
+
+        if(!searchLocalRes.getItems().isEmpty()) {
+            //2. 이미지 검색
             var localItem = searchLocalRes.getItems().stream().findFirst().get();
-            System.out.println(localItem);
 
-            var imageQuery = localItem.getTitle().replaceAll("<[^>]*>", "");
-            System.out.println(imageQuery);
+//            var imageQuery = localItem.getTitle().replaceAll("<[^]*]", "");
             var searchImageReq = new SearchImageReq();
-            searchImageReq.setQuery(imageQuery);
-            //이미지검색
-            var searchImageRes = naverClient.searchImage(searchImageReq);
+            searchImageReq.setQuery(query);
 
-            if(searchImageRes.getTotal() > 0) {
-                //결과리턴
+            var searchImageRes = naverClient.searchImage(searchImageReq);
+            if(!searchImageRes.getItems().isEmpty()) {
                 var imageItem = searchImageRes.getItems().stream().findFirst().get();
 
-                var result = new WishListDto(1L,
-                        localItem.getTitle(), localItem.getCategory(),
-                        localItem.getAddress(), localItem.getRoadAddress(),
-                        localItem.getLink(), imageItem.getLink());
-
-                return result;
+                //3. 결과물 리턴
+             return  new WishListDto(0L, localItem.getTitle(), localItem.getCategory(),
+                                localItem.getAddress(), localItem.getRoadAddress(), imageItem.getLink(), localItem.getLink());
             }
-
         }
-        return null;
+
+        return new WishListDto();
     }
 
 
